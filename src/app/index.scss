@@ -1,0 +1,1048 @@
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+ */
+$navbar-inverse-link-color: #5AADBB;
+$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+
+
+
+/**
+ * App-wide Styles
+ */
+
+$icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
+
+/*@import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import 'font-awesome/scss/font-awesome';*/
+
+
+/* COLORS ///////////////////////////////////////////////////////////*/
+
+$BodyBackgroundColor: #F1F1F1;
+/*$LightBlue: #8cd6f0;*/
+$Blue: #28588F;
+$AccentBlue: #00B3E6;
+$PopBlue: #8cd6f0;
+$LightBlue: #F4FBFE;
+/*background-color: rgba(140, 214, 240, .1);*/
+$Green: #05a723;
+$PopGreen: #27cb13;
+$ButtonGreen: rgba(3, 132, 29, .6);
+$DarkGrey: #636363;
+$Grey: #636363;
+$Red: #bb1714;
+/*$Red: #ce1a17;*/
+$Pink: #ff699f;
+$Gentle: #8cd6f0;
+$Gentle1: #109aba;
+$SwimmingPool: #2ddfff;
+$GoogleMapsBlue: #0288D1;
+$LeadColor: #D86018;
+$AltColor: #F6A230;
+$SoftColor: #f6c56b;
+$SuperSoft: #f6f0d1;
+$Lemon: yellow;
+
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:400italic);
+@import url(https://fonts.googleapis.com/css?family=Kaushan+Script);
+@import url(https://fonts.googleapis.com/css?family=Pacifico);
+@import url(https://fonts.googleapis.com/css?family=Great+Vibes);
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+.rk-next-required {
+  a {
+    color:black;
+  }
+}
+
+.rk-footer {
+  height:2000px;
+  background-color:black;
+  text-align:center;
+}
+
+.rk-splash-backdrop {
+  background-size:cover;
+  overflow:hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  display:inline-block;
+  width:100%;
+  margin: auto;
+  background-size:cover;
+  /*background-image: url("https://images.unsplash.com/photo-1453847634428-913c9226ed95?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=ba4f852ba6299d85deacb5f41da43181");*/
+  background-image: url("https://images.unsplash.com/photo-1444012830796-83db7e1db0d3?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=015de72a3767dec8c6341fd41fd66ccd");
+  /*background-image: url("https://images.unsplash.com/photo-1434123715472-19686d6cc442?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=b14eab8bbb71ced3568b6a41749b3571");*/
+  /*background-image: url("https://images.unsplash.com/photo-1446585522508-708651815284?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=8d8e70ea394ec538d8035d61f1d56729");*/
+  overflow:hidden;
+  box-sizing: border-box;
+}
+
+.rk-dev-btn {
+  margin-left:50px;
+  color: white;
+  width: auto;
+  background-color: white;
+  &:hover {
+    background-color: $Pink;
+  };
+
+}
+
+.rk-red-x-button {
+  color:#BB1714;
+  background-color:rgba(255,255,255,0);
+  border:none;
+  /*border-radius:100%;*/
+  font-size:8px;
+  margin-left: -5px;
+}
+
+.rk-black-x-button {
+  color:black;
+  background-color:rgba(255,255,255,0);
+  border:none;
+}
+
+.rk-sig-tab-on {
+  border: $LeadColor 1px solid;
+  border-bottom: none;
+}
+
+.rk-sig-tab-off {
+  border-bottom: $LeadColor 1px solid;
+}
+
+.rk-sig-btn {
+  /* fonts and a few other attributes are not getting picked up in mobile - - see inline styles for now.... */
+  text-align: left;
+  line-height: 0.6;
+  font-size: 10px;
+  background-color:white;
+  border: solid red 1px;
+  /*border-radius: 4px;*/
+  /*padding: (6px,0,6px,0);*/
+  color: $LeadColor;
+  &:hover {
+    background-color: $Lemon;
+  };
+/*  &:focus {
+    animation-name: rk-next;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+  };*/
+  @media (max-width: 670px) {
+    padding:(0,15px,0,0);
+    font-size:8px
+  }
+}
+
+.rk-esign-btn {
+  background-color:$SoftColor;
+  border: 0px;
+  width: 150px;
+  font-family: calibri;
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  &:hover {
+    background-color: $SuperSoft;
+  }
+}
+
+.rk-btn-dark-green {
+  background-color: $SoftColor;
+  border: 0px;
+  width: 150px;
+  font-family: calibri;
+  font-size: 20px;
+  margin-top: 0;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  &:hover {
+    background-color: $SuperSoft;
+  }
+}
+
+.rk-is-green-button {
+  background-color: #83DB8C;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  margin-right: 10px;
+  &:visited, focus {
+    border:none;
+  };
+}
+
+.rk-is-grey-button {
+  background-color: #868C86;
+  color: white;
+  border-radius: 4px;
+  border: none;
+}
+
+/* DEVELOPER////////////////////////////////////////////////////////*/
+.rk-dev {
+  /*display: none;*/
+  margin: 2px;
+  background-color: white;
+  word-wrap: break-word;
+  @media (max-width: 740px) {
+    /*display: none;*/
+  }
+  min-width: 100px;
+}
+
+.rk-page-dev-info {
+  margin-top: 15%;
+  margin-left: 5%;
+}
+
+/* "FIELDS" //////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*@keyframes blink-empty {
+  100% {background-color: yellow;}
+}*/
+
+
+.rk-checkbox-parent {
+  border: red solid 1px;
+  /*border-radius: 4px;*/
+  height: 22px;
+  width: 22px;
+  &:hover {
+    background-color: $Lemon;
+  };
+  &:focus {
+    animation-name: rk-next;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+    animation: blink-empty .7s infinite;
+  };
+}
+
+.rk-checkbox {
+  height: 16px;
+  width: 16px;
+}
+
+/* THIS CLASS IS NOT GETTING PICKED UP - SEE INLINE STYLES */
+.rk-large-general-field {
+  input[type="text"] {
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: white;
+      &:hover {
+        background-color: $Lemon;
+    };
+  };
+  @media (max-width: 700px) {
+    display: none;
+  }
+}
+
+/* THIS CLASS IS NOT GETTING PICKED UP - SEE INLINE STYLES */
+.rk-small-general-field {
+  input[type="text"] {
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: white;
+    /*margin: 5px;*/
+      &:hover {
+        background-color: $Lemon;
+    };
+  };
+  @media (min-width: 700px) {
+    display: none;
+  }
+}
+
+
+
+/*    &:focus {
+      animation-name: rk-next;
+      animation-duration: 1s;
+      animation-iteration-count: 3;
+      animation: blink-empty .7s infinite;
+    };*/
+
+
+.rk-signature-display {
+  padding-bottom: 8px;
+  /*padding-top: 4px;*/
+  text-align: left;
+  /*color: darkgrey;*/
+  /*color: #28588F;*/
+  width: 200px;
+  height: 28px;
+  background-color: white;
+  border: 1px red $LeadColor;
+  border-radius: 4px;
+  a {
+    line-height: 1;
+    font-size: 14px;
+  };
+  font-size:18px;
+}
+
+/* MAIN CONTAINERS ///////////////////////////////////////////////////////////////////////////////////////////*/
+
+#rk-box-0 {
+
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !important;
+
+  &:hover {
+      box-shadow: 0 10px 22px 0 rgba(0, 0, 0, .2), 0 8px 30px 0 rgba(0, 0, 0, .19);
+  }
+
+  transition: all .5s;
+  position: relative;
+  /*height: calc(100vh - 60px);*/
+  width: 96%;
+  margin: 0 auto;
+  /*margin-top: 15px;*/
+  margin-top: 48px;
+  border: 2px solid $LeadColor;
+  border-top: 0;
+  overflow: scroll;
+  @media (min-width: 1125px) {
+    width: 1125px;
+    margin: 0 auto;
+    /*height: calc(100vh - 209px);*/
+  }
+  @media (max-width: 1125px) {
+    border: none;
+  }
+}
+
+.rk-box-1 {
+
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !important;
+
+  &:hover {
+      box-shadow: 0 10px 22px 0 rgba(0, 0, 0, .2), 0 8px 30px 0 rgba(0, 0, 0, .19);
+  }
+
+  border: 2px solid $LeadColor;
+  border-bottom: none;
+  width:1125px;
+  margin: 0 auto;
+  background-color: $AltColor;
+  color: black;
+  padding: 5px 8px 3px 10px;
+  font-family: sans-serif;
+  font-size: 19px;
+  text-align: left;
+  height: 62px;
+  /*border-bottom: 1px dotted #ddd;*/
+  @media (max-width: 1125px) {
+    padding:0;
+    font-size:0;
+  }
+}
+
+
+.rk-box-2 {
+  border-top:none;
+
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !important;
+
+  &:hover {
+      box-shadow: 0 10px 22px 0 rgba(0, 0, 0, .2), 0 8px 30px 0 rgba(0, 0, 0, .19);
+  }
+
+  line-height: 0;
+  min-width: 100%;
+  position: relative;
+  background-color: white;
+  margin: auto;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  direction: ltr;
+  height: calc(100vh - 90px);
+  @media (max-width: 1125px) {
+    padding: 0;
+    /*height: calc(100vh - 68px);*/
+  };
+}
+
+.rk-box-2-large-doc-test {
+  line-height: 0;
+  min-width: 100%;
+  position: relative;
+  background-color: white;
+  margin: auto;
+  /*may not work with Android*/
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  direction: ltr;
+  height: 95vh;
+  @media (max-height: 400px) {
+    height: 85%;
+  };
+
+  @media (max-width: 840px) {
+    padding: 0;
+    height: 100%;
+  };
+}
+
+.rk-box-3 {
+  display: none;
+  padding-right: 12px;
+  padding-top: 0;
+  height: auto;
+  width: 1125px;
+  margin: 0 auto;
+  background-color: $SoftColor;
+  border: 2px solid $LeadColor;
+  border-top: none;
+  color: grey;
+  font-family: sans-serif;
+  font-size: 12px;
+  a {
+    color: $Red;
+    font-weight: bold;
+  }
+  @media (min-width: 1125px) {
+    display: block;
+  };
+}
+
+/* MODALS ////////////////////////////////////////////////////////////*/
+
+
+/*.center-container {
+  position: relative;
+}
+
+.absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}*/
+
+.rk-basic-modal-0 {
+  position: fixed;
+  z-index: 9998;
+  /*background-color: rgba(0, 0, 0, 0.5);*/
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  height: 100%;
+  transition: ease 1s;
+  @media (max-width: 670px) {
+    background-color: white;
+  }
+}
+
+.rk-basic-modal-1 {
+  position: fixed;
+  z-index: 9998;
+  /*background-color: rgba(0, 0, 0, 0.5);*/
+  background-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  height: 100%;
+  transition: ease 1s;
+  @media (max-width: 670px) {
+    background-color: white;
+  }
+}
+
+.rk-basic-modal-2 {
+
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !important;
+
+  &:hover {
+      box-shadow: 0 10px 22px 0 rgba(0, 0, 0, .2), 0 8px 30px 0 rgba(0, 0, 0, .19);
+  }
+
+  border-color: $LeadColor;
+  transition: all .5s;
+  position: relative;
+  height: 310px;
+  width: 670px;
+  max-width: 100%;
+  margin: auto;
+  margin-top: 20vh;
+  background-color: white;
+  /*transition: .7s ease; */
+  /*transition-timing-function: .7s ease;*/
+  /*box-sizing: border-box;*/
+  @media (max-height: 500px) {
+    margin-top: -60px;
+    background-color: white;
+  }
+  @media (max-width: 670px) {
+    background-color: white;
+  }
+  z-index: 9999;
+}
+
+.rk-splash-modal {
+
+  transition: all .5s;
+  position: relative;
+  height: 600px;
+  width: 670px;
+  max-width: 100%;
+  margin: auto;
+  margin-top: 35vh;
+  background-color: rgba(0, 0, 0, .5);
+  color:$AltColor;
+  text-align:center;
+  /*transition: .7s ease; */
+  /*transition-timing-function: .7s ease;*/
+  /*box-sizing: border-box;*/
+  @media (max-height: 500px) {
+    margin-top: 10vh;
+  }
+  z-index: 9999;
+}
+
+.rk-alert-message {
+  text-align: center;
+  transition: all .5s;
+  position: relative;
+  height: 20px;
+  width: 1121px;
+  max-width: 100%;
+  margin: auto;
+  margin-top: 62px;
+  background-color: red;
+  @media (max-height: 500px) {
+    margin-top: -60px;
+    background-color: white;
+  }
+  @media (max-width: 670px) {
+    background-color: white;
+  }
+  z-index: 9999;
+}
+
+.rk-pull-right-10 {
+  padding-left: 10px;
+}
+
+.rk-pull-right-16 {
+  padding-left: 16px;
+}
+
+.rk-pull-down-5 {
+  padding-top: 5px;
+}
+
+.rk-typed-signature-pad {
+  background-color: white;
+  border: $LeadColor 1px solid;
+  border-top:none;
+  height: 152px;
+  width: 100%;
+  /*max-width: 100%;*/
+  margin: auto;
+  overflow: hidden;
+  font-size: 3rem;
+  line-height: 3;
+  font-style: italic;
+  @media (max-height: 500px) {
+    background-color: white;
+    /*border: solid grey 1px;*/
+  }
+  @media (max-width: 670px) {
+    /*border:solid 1px grey;*/
+  }
+}
+
+.rk-signature-pad {
+  border: $AltColor solid 1px;
+  border-top:none;
+  background-color: white;
+  @media (max-width: 670px) {
+    /*border:solid 1px grey;*/
+  }
+  @media (max-height: 500px) {
+    background-color: white;
+    /*border: solid grey 1px;*/
+  }
+}
+
+.rk-loading-modal {
+  height: 160px;
+  width: 300px;
+  background-color: darkgrey;
+  border-radius: 4px;
+}
+
+.rk-decline-pad {
+  input[type="textarea"] {
+  };
+}
+
+.rk-password-modal {
+  background-color: $LeadColor;
+  margin-top: 30vh;
+  height: 282px;
+  text-align: center;
+}
+
+.rk-decline-modal {
+  margin-top: 70vh;
+  margin-left: 60%;
+  height: 150px;
+  width: 300px;
+  background-color: $SoftColor;
+  @media (max-width: 840px) {
+    display: none;
+  };
+  border-radius: 4px;
+}
+
+.rk-rotation-message {
+/*  transition: all .5s;
+    box-shadow: 0 27px 24px 0 rgba(0, 0, 0, .2), 0 40px 77px 0 rgba(0, 0, 0, .22) !important;
+
+    &:hover {
+      box-shadow: 0 29px 29px 0 rgba(0, 0, 0, .2), 0 45px 87px 0 rgba(0, 0, 0, .22);
+  }*/
+  display: none;
+  background-color: white; 
+  box-sizing: border-box;
+  height: auto;
+  width: 670px;
+  max-width: 100%;
+  margin: 0 auto;
+  /*margin-top: 150px;*/
+  @media (max-height: 600px) {
+    margin-top: 0;
+  }
+  padding: 5px;
+  z-index: 9999;
+    /* for now if the width is greater than the height of the screen size, we will treat it like a desktop and hide the the rotation message.*/
+  @media (max-width: 500px) {
+    display: block;
+  }
+  @media (max-height: 380px) {
+    display: none;
+  };
+}
+
+.rk-rotation-initials {
+  width: 280px;
+}
+
+.rk-mobile-adjustment {
+  @media (max-width: 500px) {
+    margin-top: 0;
+    display:none;
+  };
+}
+
+/* PAGE BOXES //////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.rk-page-parent {
+  position: relative;
+  width: 92%;
+  margin: auto;
+  @media (max-width: 700px) {
+    border: none;
+    transition: all .5s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12) !important;
+    &:hover {
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .16), 0 4px 20px 0 rgba(0, 0, 0, .12) !important;
+    };
+  }
+  box-sizing: border-box;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  border: 1px solid #ddd;
+  margin-top: 15px;
+}
+
+
+/*.parent img {
+  width: 100%;
+  height: auto;
+}*/
+
+.rk-page-child {
+  position: absolute;
+}
+
+/* THUMBNAILS //////////////////////////////////////////////////////////////////////////////////////////////////*/
+.rk-thumbnail-action {
+  color: black;
+  background-color: $SoftColor;
+  a {
+    color: $LeadColor;
+    &:hover {
+      color: $AltColor;
+      text-decoration: none;
+    };
+  };
+  /*width: inherit;*/
+}
+
+.rk-tray {
+  a:hover {
+    text-decoration: none;
+  };
+  transition: all .5s;
+  text-align: center;
+  overflow: scroll;
+  z-index: 9999;
+  background-color: $SoftColor;
+  position: fixed;
+  height: calc(100vh - 90px);
+  width: 116px;
+}
+
+
+.rk-thumbnail-box {
+}
+
+.rk-open-action {
+  transition: all .5s;
+  a {
+    @media (max-width: 700px) {display: none;}
+    /*background-image: '/images/arrow_toggle_thumb.png';*/
+    color: $SoftColor;
+    &:hover {
+      color: $AltColor;
+      text-decoration: none;
+    };
+  };
+  width: auto;
+  /*height: 100%;*/
+  position: fixed;
+  margin-top: 40vh;
+  z-index: 9999;
+  @media (max-height: 450px) {
+    display: none;
+  };
+}
+
+.rk-close-action {
+  transition: all .5s;
+  a {
+    @media (max-width: 700px) {display: none;}
+    color: $LeadColor;
+    &:hover {
+      color: $AltColor;
+      text-decoration: none;
+    };
+  };
+  width: auto;
+  height: 100%;
+  position: fixed;
+  margin-top: 40vh;
+  margin-left: 116px;
+  z-index: 9999;
+  @media (max-height: 400px) {
+    display: none;
+  };
+}
+
+/* UNSORTED //////////////////////////////////////////////////////////////*/
+
+/*body {
+  background-color: $BodyBackgroundColor;
+}*/
+
+/*canvas {
+  width: 100%;
+  height: 90px;
+}*/
+
+/* does not work in all cases of Firefox and Safari iOS, etc. */
+/*.rk-no-pinch-zoom {
+  touch-action: none;
+}*/
+
+#wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: #ccc;
+  overflow: hidden;
+}
+
+#scroller {
+  position: absolute;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+.rk-modal-tab {
+/*  border: 1px solid black;
+  border-bottom: none;*/
+  text-align:center;
+  font-size:18px;
+  a {
+    text-decoration:none;
+    &:hover {
+      text-decoration:none;
+    };
+  };
+}
+
+.rk-no-dec {
+  a {
+    text-decoration:none;
+    &:hover {
+      text-decoration:none;
+    };
+  };
+}
+
+.rk-grey-border {
+  border: 1px solid #ddd;
+  margin-top: 35px;
+}
+
+.rk-info-box {
+  background-color: $BodyBackgroundColor;
+  position: relative;
+  margin: auto;
+  color: grey;
+  padding: 12px;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 2;
+  box-sizing: border-box;
+  width: 92%;
+  height: 185px;
+  background-color: rgb(243, 243, 243);
+  /*margin-left: 110px;*/
+  border: 1px solid #DDDDDD;
+}
+
+.rk-info-box-tray-open {
+  margin-left: 132px;
+  width: 934px;
+}
+
+.rk-branding-box {
+  background-color: white;
+  position: relative;
+  /*margin: auto;*/
+  width: 1125px;
+  margin: 0 auto;
+}
+
+.rk-red {
+  color: $Red;
+}
+
+.rk-centered {
+  text: center;
+}
+
+.rk-btn-blue {
+  background-color: $AccentBlue;
+  border: 0px;
+}
+
+.rk-btn-blue:hover {
+  background-color: $PopBlue;
+}
+
+.z-depth-0 {
+    box-shadow: none !important;
+}
+
+.z-depth-1 {
+    transition: all .5s;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12) !important;
+
+    &:hover {
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .16), 0 4px 20px 0 rgba(0, 0, 0, .12) !important;
+    }
+}
+
+.z-depth-2 {
+    transition: all .5s;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !important;
+
+    &:hover {
+        box-shadow: 0 10px 22px 0 rgba(0, 0, 0, .2), 0 8px 30px 0 rgba(0, 0, 0, .19);
+    }
+}
+
+.z-depth-3 {
+    transition: all .5s;
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19) !important;
+
+    &:hover {
+        box-shadow: 0 14px 20px 0 rgba(0, 0, 0, .24), 0 22px 60px 0 rgba(0, 0, 0, .19);
+    }
+}
+
+.z-depth-4 {
+    transition: all .5s;
+    box-shadow: 0 16px 28px 0 rgba(0, 0, 0, .22), 0 25px 55px 0 rgba(0, 0, 0, .21) !important;
+
+    &:hover {
+        box-shadow: 0 18px 33px 0 rgba(0, 0, 0, .22), 0 30px 65px 0 rgba(0, 0, 0, .21);
+    }
+}
+
+.z-depth-5 {
+    transition: all .5s;
+    box-shadow: 0 27px 24px 0 rgba(0, 0, 0, .2), 0 40px 77px 0 rgba(0, 0, 0, .22) !important;
+
+    &:hover {
+        box-shadow: 0 29px 29px 0 rgba(0, 0, 0, .2), 0 45px 87px 0 rgba(0, 0, 0, .22);
+    }
+}
+
+
+/* generic buffer */
+.rk-page-buffer {
+  height: 6px;
+};
+
+
+.rk-loading {
+  text-align: center;
+  margin-top: 70px;
+  overflow: hidden;
+  font-size: 4rem;
+  font-style: italic;
+  border-radius: 4px;
+}
+
+/*.stamp-field:hover {
+  background-color: yellow;
+}*/
+
+.rk-start {
+  text-align: right;
+  button {
+    background-color: $Green;
+  }
+}
+
+.rk-green {
+  background-color: $Green;
+}
+
+.rk-red-x {
+  background-color: white;
+  color: #BB1714;
+  border-radius: 0;
+}
+
+.rk-black-x {
+  background-color: black;
+  color: white;
+  border-radius: 100%;
+}
+
+.rk-desktop-only {
+  @media (max-width: 1125px) {
+    display: none;
+  }
+}
+
+.rk-sm-desktop-only {
+  @media (min-width: 1125px) {
+    display: none;
+  }
+  @media (max-width: 700px) {
+    display: none;
+  }
+}
+
+.rk-mobile-only {
+/*  display: none;*/
+  @media (min-width: 1125px) {
+    display: none;
+  }
+}
+
+.rk-decline {
+  /*padding-right: 12px;*/
+  padding-top: 12px;
+  padding-left: -10px;
+}
+
+.rk-click-to-eSign {
+  padding-top: 12px;
+  @media (max-width: 840px) {
+    padding: 5px;
+  };
+}
+
+.rk-agree-to-terms {
+  a, strong {
+    color: black;
+    /*text-decoration: none;*/
+  };
+  padding-left: 30px;
+  padding-top: 10px;
+  line-height: 1.3;
+}
+
+a {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.rk-xs-only {
+ @media (min-width: 700px) {
+  display: none;
+ } 
+}
+
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector

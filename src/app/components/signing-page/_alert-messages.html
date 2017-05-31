@@ -1,0 +1,26 @@
+    <div ng-show="rkState.blankAlert">
+      <div class="rk-basic-modal-1">
+        <div class="rk-alert-message">
+          This field cannot be blank.
+          <button class="pull-right rk-black-x-button" ng-click="rkState.blankAlert = false">X</button>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="rkState.longerInitials">
+      <div class="rk-basic-modal-1">
+        <div class="rk-alert-message">
+          Please draw a longer set of initials.
+          <button class="pull-right rk-black-x-button" ng-click="rkState.longerInitials = false">X</button>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="rkState.longerSignature">
+      <div class="rk-basic-modal-1">
+        <div class="rk-alert-message">
+          Please draw a longer signature.
+          <button class="pull-right rk-black-x-button" ng-click="rkState.longerSignature = false">X</button>
+        </div>
+      </div>
+    </div>

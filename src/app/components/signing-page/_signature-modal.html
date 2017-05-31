@@ -1,0 +1,113 @@
+    <div ng-show="rkState.signatureModalOpen">
+      <div class="rk-basic-modal-0">
+
+        <div class="rk-rotation-message" style="font-size:32px;margin-left:5px;margin-left:0;text-align:center;color:lightgrey;background-color:white;">
+          <h1>
+            <span class="glyphicon glyphicon-refresh"></span>
+            .....ROTATE OR EXPAND YOUR DEVICE to have more signing room...
+          </h1>
+          <button class="btn btn-xl rotation-message" style="background-color:#f6f0d1; color:black;" ng-click="(rkState.signatureModalOpen = false) && (rkState.chosenField = '') && (endGetDataUrlLength())">
+            Cancel
+          </button>
+        </div>
+
+        <div class="rk-basic-modal-2 rk-mobile-adjustment">
+
+          <div class="rk-page-buffer"></div>
+
+          <div class="col-xs-12">
+            <br>
+            <span>
+              <input id="C" size="35" type="text" ng-model="master.participant.name" value="master.participant.name" placeholder="Type Your Full Name" style="font-size:25px;background-color:yellow;">
+            </span>
+            <span ng-init="rkState.typedSignature = master.participant.name"></span>
+          </div>
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+          <br>
+          <div class="col-xs-12">
+            <div ng-if=" rkState.signaturePreference == 'type' ">
+              <div class="rk-page-buffer"></div>
+              <div class="row rk-no-dec">
+<!--                 <div ng-if="(master.participant.name == '')" class="col-xs-6" style="padding-right:5px;">
+                  <div class="rk-modal-tab rk-sig-tab-on" style="background-color:white;color:lightgrey;"><strong>Use Your Typed Signature</strong></div>
+                </div> -->
+                <div class="col-xs-6" style="padding-right:0;">
+                  <div class="rk-modal-tab rk-sig-tab-on" style="background-color:white;"><strong>Use Your Typed Signature</strong></div>
+                </div>
+                <a ng-click="(rkState.signaturePreference = 'draw')" class="col-xs-6" style="padding-left:0;">
+                  <div class="rk-modal-tab rk-sig-tab-off" style="background-color:#f6f0d1;color:darkgrey;"><strong>Draw Your Signature</strong></div>
+                </a>
+              </div>
+              <div class="rk-typed-signature-pad" style="text-align:center;font-size:40px;padding-top:15px;font-family:{{ rkState.assignedFont }}">
+                {{ master.participant.name }}
+              </div>
+              <div class="rk-page-buffer"></div>
+              <div class="">
+
+                <span ng-if="!(master.participant.name == '')">
+                  <button class="btn btn-xl" style="background-color:#F6A230; color:black; margin-right:5px;" ng-click="(updateChosenTypedSignature(rkState.chosenField))">
+                    Apply
+                  </button>
+                </span>
+
+                <span ng-if="(master.participant.name == '')">
+                  <button class="btn btn-xl" style="background-color:#F3F3F3; color:lightgrey; cursor: no-drop; margin-right:5px;">
+                    Apply
+                  </button>
+                </span>
+
+                <button class="btn btn-xl" style="background-color:#f6f0d1; color:black;" ng-click="(rkState.signatureModalOpen = false) && (endGetDataUrlLength())">Cancel</button>
+
+              </div>
+              <div class="rk-page-buffer"></div>              
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <div ng-if=" rkState.signaturePreference == 'draw' ">
+              <div class="rk-page-buffer"></div>
+              <div class="row rk-no-dec">
+                <a class="col-xs-6" ng-click="(rkState.signaturePreference = 'type')" style="padding-right:0;">
+                  <div class="rk-modal-tab rk-sig-tab-off" style="background-color:#f6f0d1;color:darkgrey;"><strong>Use Your Typed Signature</strong></div>
+                </a>
+                <div class="col-xs-6" style="padding-left:0;">
+                  <div class="rk-modal-tab rk-sig-tab-on" style="background-color:white;color:black;"><strong>Draw Your Signature</strong></div>
+                </div>
+              </div>
+              <div class="rk-signature-pad">
+                <signature-pad accept="accept" clear="clear" height="152px" width="570px" style='width:100%; height:152px; overflow:hidden;'></signature-pad>
+              </div>
+              <div ng-init="getDataUrlLength(accept().dataUrl)"></div>
+              <div ng-model="(rkState.currentMark = accept().dataUrl)"></div>
+              <div class="rk-page-buffer"></div>
+              <div class="">
+
+
+                <span ng-if="(accept().dataUrl.length > 3999) && !(master.participant.name == '')">
+                  <button class="btn btn-xl" style="background-color:#F6A230; color:black; margin-right:5px;" ng-click="(rkState.preferredSigUrl = accept().dataUrl) && (updateChosenDrawnSignature(rkState.chosenField))">
+                    Apply
+                  </button>
+                </span>
+
+                <span ng-if="(accept().dataUrl.length < 4000) || (master.participant.name == '')">
+                  <button class="btn btn-xl" style="background-color:#F3F3F3; color:lightgrey; cursor: no-drop; margin-right:5px;">
+                    Apply
+                  </button>
+                </span>
+
+                <button class="btn btn-xl" style="background-color:#f6f0d1; color:black;" ng-click="(rkState.signatureModalOpen = false) && (rkState.chosenField = '') && (endGetDataUrlLength())">Cancel</button>
+
+                <span ng-if="(accept().dataUrl.length > 70)">
+                  <button class="btn btn-xl pull-right" style="background-color:#f6f0d1; color:black;" ng-click="clear()"><span class="glyphicon glyphicon-remove-circle">Clear</span></button>
+                </span>
+
+                <div class="rk-page-buffer"></div>
+                <div class="rk-page-buffer"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

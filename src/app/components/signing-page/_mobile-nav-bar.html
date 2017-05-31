@@ -1,0 +1,18 @@
+<div ng-if="(!rkState.formComplete) && (!rkState.documentDeclined)" class="rk-no-pinch-zoom navbar navbar-default navbar-fixed-top rk-mobile-only z-depth-1"  style="background-color:white;border:0;margin:0;">
+  <div class="container">
+    <div class="">
+      <button class="navbar-toggle pull-left" type="button" ng-click="isCollapsed = !isCollapsed" style="color:black;">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a ng-if="reqRem.length != 0" class="btn pull-right" style="background-color:#F6A230;color:black;margin-top:7px;" href="#/signing/{{ partHash }}#field{{ reqRem[0].id }}">NEXT REQUIRED FIELD *{{ reqRem.length }}</a>
+      <button ng-show="(reqRem.length == 0)" class="btn pull-right" style="background-color:#F6A230;margin-top:7px;" ng-click="rkState.termsOfUseModalOpen = true">CLICK to CONTINUE</button>
+    </div>
+    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+      </ul>
+    </div>
+  </div>
+</div>

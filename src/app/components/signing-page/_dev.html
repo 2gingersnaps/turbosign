@@ -1,0 +1,25 @@
+  
+
+  <div ng-show="rkState.showDev" class="row rk-dev">
+    <button ng-click="rkState.showDev = false" class="btn rk-dev-btn">hide dev</button>
+    <button ng-click="updateDocumentData()" class="btn rk-dev-btn">POST to DB - test</button>
+    <button class="btn rk-dev-btn" ng-click="getFieldStatus()">GET FIELD STATUS</button>
+    <h4>zoomFactor: {{ zoomFactor }}</h4>
+    <h4>rkState.currentMark.length: {{ rkState.currentMark.length }}</h4>
+    <h4>rkState.currentMark: {{ rkState.currentMark }}</h4>
+    <pre>document: {{ document | json }}</pre>
+    <pre>master: {{ master | json }}</pre>
+    <div class="col-md-12">
+      <pre>
+        <span ng-init="getFieldStatus()"></span>
+        These fields are empty and required: {{ reqRem | json }}
+      </pre>
+    </div>
+    <div class="col-md-12">
+      <pre>master = {{master | json}}</pre>
+    </div>
+    <div class="col-md-12">
+      <pre>rkState = {{rkState | json}}</pre>
+    </div>
+  </div>
+

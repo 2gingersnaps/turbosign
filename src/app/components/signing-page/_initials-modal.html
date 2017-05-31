@@ -1,0 +1,98 @@
+    <div ng-show="rkState.initialsModalOpen">
+      <div class="rk-basic-modal-0">
+        <div class="rk-basic-modal-2" style="width: 275px">
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+          <div class="col-xs-12">
+<!--             <span ng-init="alertFocus()"></span>
+            <span> -->
+            <input id="A" size="16" maxlength="4" type="text" ng-model="master.typedInitials" value="master.typedInitials" placeholder="Type Your Initials" style="font-size:25px;background-color:yellow;">
+            <div class="rk-page-buffer"></div>
+          </div>
+          <div class="col-xs-12">
+            <div ng-if=" rkState.initialsPreference == 'type' ">
+              <div class="row rk-no-dec">
+                <div class="col-xs-6" style="padding-right:0;">
+                  <div class="rk-modal-tab rk-sig-tab-on" style="background-color:white;"><strong>Use Typed Initials</strong></div>
+                </div>
+<!--                 <div ng-if="(master.typedInitials == '')" class="col-xs-6" style="padding-right:0;">
+                  <div class="rk-modal-tab rk-sig-tab-on" style="background-color:white;color:lightgrey;"><strong>Use Typed Initials</strong></div>
+                </div> -->
+                <a ng-click="(rkState.initialsPreference = 'draw')" class="col-xs-6" style="padding-left:0;">
+                  <div class="rk-modal-tab rk-sig-tab-off" style="background-color:#f6f0d1;color:darkgrey;"><strong>Draw Your Initials</strong></div>
+                </a>
+              </div>
+              <div class="rk-typed-signature-pad" style="text-align:center;font-size:40px;padding-top:15px;font-family:{{ rkState.assignedFont }};height:145px;">
+                {{ master.typedInitials }}
+              </div>
+              <div class="rk-page-buffer"></div>
+              <div class="">
+
+                <span ng-if="!(master.typedInitials == '')">
+                  <button class="btn btn-xl" style="background-color:#F6A230; color:black; margin-right:0;" ng-click="(updateChosenTypedInitials(rkState.chosenField))">
+                    Apply
+                  </button>
+                </span>
+
+                <span ng-if="(master.typedInitials == '')">
+                  <button class="btn btn-xl" style="background-color:#F3F3F3; color:lightgrey; cursor: no-drop; margin-right:0;">
+                    Apply
+                  </button>
+                </span>
+
+                <button class="btn btn-xl" style="background-color:#f6f0d1; color:black;" ng-click="rkState.initialsModalOpen = false && (endGetDataUrlLength())">
+                  Cancel
+                </button>
+              </div>
+              <div class="rk-page-buffer"></div>
+            </div>
+          </div>
+
+          <div class="col-xs-12">
+            <div ng-if=" rkState.initialsPreference == 'draw' ">
+              <div class="row rk-no-dec">
+                <a class="col-xs-6" ng-click="(rkState.initialsPreference = 'type')" style="padding-right:0;">
+                  <div class="rk-modal-tab rk-sig-tab-off" style="background-color:#f6f0d1;color:darkgrey;"><strong>Use Typed Initials</strong></div>
+                </a>
+                <div class="col-xs-6" style="padding-left:0;">
+                  <div class="rk-modal-tab rk-sig-tab-on" style="background-color:white;"><strong>Draw Your Initials</strong></div>
+                </div>
+              </div>
+              <div ng-init="getDataUrlLength(accept().dataUrl)"></div>
+
+              <div class="rk-signature-pad">
+                <signature-pad accept="accept" clear="clear" height="145px" width="570px" style='width:100%; height:145px; overflow:hidden;'></signature-pad>
+              </div>
+              <div class="rk-page-buffer"></div>
+              <div class="">
+
+                <span ng-if="(accept().dataUrl.length > 2499) && !(master.typedInitials == '')">
+                  <button class="btn btn-xl" style="background-color:#F6A230; color:black; margin-right:0;" ng-click="(rkState.preferredInitialsUrl = accept().dataUrl) && (updateChosenDrawnInitials(rkState.chosenField))">
+                    Apply
+                  </button>
+                </span>
+
+                <span ng-if="accept().dataUrl.length < 2500 || (master.typedInitials == '')">
+                  <button class="btn btn-xl" style="background-color:#F3F3F3; color:lightgrey; cursor: no-drop; margin-right:0;">
+                    Apply
+                  </button>
+                </span>
+
+                <button class="btn btn-xl" style="background-color:#f6f0d1; color:black;" ng-click="rkState.initialsModalOpen = false && (endGetDataUrlLength())">Cancel</button>
+
+                <span ng-if="(accept().dataUrl.length > 70)">
+                  <button class="btn btn-xl pull-right" style="background-color:#f6f0d1; color:black;" ng-click="clear()"><span class="glyphicon glyphicon-remove-circle">Clear</span></button>
+                </span>
+
+                <div class="rk-page-buffer"></div>
+                <div class="rk-page-buffer"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+        </div>
+      </div>
+    </div>

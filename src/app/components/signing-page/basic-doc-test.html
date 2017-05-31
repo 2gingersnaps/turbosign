@@ -1,0 +1,84 @@
+<!-- Experimental page :-) -->
+
+
+
+
+<div ng-controller="MockDataCtrl" ng-class="{
+    'iscroll-on': app.iScrollState.useIScroll,
+    'iscroll-off': !app.iScrollState.useIScroll
+    }">
+
+  <div class="row">
+    <div class="wrapper" style="width:300px;height:300px;background-color:orange;text-align:center;margin:0 auto;"
+      iscroll="{
+        zoom: true,
+        scrollX: true,
+        scrollY: true,
+        mouseWheel: true,
+        wheelAction: 'zoom'
+      }">
+      <div class="scroller">
+        iscroll-zoom test....
+      </div>
+    </div>
+  </div>  
+
+  <div class="row">
+    <div hm-tap="onHammer" style="width:300px;height:300px;background-color:pink;text-align:center;margin:0 auto;">
+      <h1>TAP {{eventType}}</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div hm-pinch="onHammer" style="width:300px;height:300px;background-color:pink;text-align:center;margin:0 auto;">
+      <h1>PINCH {{eventType}}</h1>
+    </div>
+  </div>
+
+  <div style="">
+    <div class="row">
+      <div style="text-align:center;background-color:orange;width:90%;text-align:center;margin:auto" >
+        IMAGE ZOOM
+        <img src="https://s3.amazonaws.com/test_is_document_images/83ef08f3a010008_0/images/83ef08f3a010008_0_0" height="300px" width="300px" ng-pinch-zoom max-scale=“4” />
+      </div>
+    </div>
+  </div>
+
+  <div id="element">
+    Scroll to this element, offset by 200px from the top....
+  </div>
+
+  <div class="row">
+    <div style="text-align:center;background-color:orange;width:90%;text-align:center;margin:auto" ng-pinch-zoom-div max-scale=“4”>
+      DIV ZOOM
+      <img src="https://s3.amazonaws.com/test_is_document_images/83ef08f3a010008_0/images/83ef08f3a010008_0_0" height="300px" width="300px"/>
+    </div>
+  </div>
+  </div>
+
+  <a href="" scroll-to="#element" offset="200" container="html, body">Go to element</a>
+
+
+  <h1 style="text-align:center" ng-pinch-zoom max-scale=“4”>BASIC DOCUMENT TEST</h1>
+
+
+
+  <!-- <span ng-init="getDocumentData()"></span> -->
+  <span ng-init="getMockDocumentData()"></span>
+
+  <div class="rk-box-2-large-doc-test">
+
+    <div ng-repeat="item in master.pages">
+
+      <div class="rk-page-parent" ng-style="{ 'width' : '{{ item.width }}px', 'height' : '{{ item.height }}px', 'background-image' : 'url(' + item.url + ')', 'zoom' : '{{ zoomFactor }}%' }">
+
+        THIS IS A PAGE.....
+
+      </div>
+
+    </div>            
+
+  </div>
+
+</div>
+

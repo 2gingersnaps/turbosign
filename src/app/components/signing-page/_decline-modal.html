@@ -1,0 +1,34 @@
+    <div ng-show="rkState.declineModalOpen">
+      <div class="rk-basic-modal-0">
+        <div class="rk-basic-modal-2" style="width: 360px; height: 190px; background-color: #F0F8FF; border: 2px solid #99CCDD;">
+          <div class="rk-page-buffer"></div>
+          <div class="rk-pull-right-10 rk-pull-down-5" style="text-align:center; color: #868C86; font-size: 20px;">
+            I will not eSign this document.
+          </div>
+          <div class="rk-page-buffer"></div>
+          <div class="rk-pull-right-10 rk-pull-down-5" style="color:#868C86; text-align:center;">
+            Please enter the reason for declining.
+          </div>
+          <div class="rk-page-buffer"></div>
+
+
+          <div class="">
+            <div>
+              <div class="rk-decline-pad" style="overflow:hidden; text-align:center;">
+                <textarea type="text" maxlength="255" rows="3" cols="36" ng-model="master.declineReason"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rk-page-buffer"></div>
+          <div class="rk-pull-right-10">
+            <button class="rk-is-green-button" ng-click="(rkState.documentDeclined = true) && (rkState.declineModalOpen = false)">Apply</button>
+            <button class="rk-is-grey-button" ng-click="rkState.declineModalOpen = false">Cancel</button>
+            <div class="rk-page-buffer"></div>
+            <div class="rk-page-buffer"></div>
+          </div>
+
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+        </div>
+      </div>
+    </div>

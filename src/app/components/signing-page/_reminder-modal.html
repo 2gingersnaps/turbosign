@@ -1,0 +1,37 @@
+    <div ng-show="rkState.reminderModalOpen">
+      <div class="rk-basic-modal-0">
+        <div class="rk-basic-modal-2" style="width: 275px;background-color:#F6A230;height:190px;">
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+          <div class="rk-page-buffer"></div>
+          <div ng-show="reqRem != 1" class="col-xs-12">
+            <strong>You have <a href="#/signing/{{ partHash }}#field{{ reqRem[0].id }}" ng-click="rkState.reminderModalOpen = false" style="color:red;">{{ reqRem.length }}</a> remaining required field(s).</strong>
+          </div>
+          <div ng-if="(master.participant.name) && (reqRem.length == 0 && !master.agreeToSign)" class="">
+            <strong class="col-xs-12">You have filled in all required fields. Please agree to the terms of use.</strong>
+            <div class="col-xs-12">
+              <input type="checkbox" ng-model="master.participant.agreeToEsign" required="" name="masterAgree"/>
+
+              I agree to do business electronically with all parties to this document and agree that I have reviewed the <a style="color:#800000; font-weight:bold" href="#/disclosures" target=_blank>consumer disclosures</a> related to electronic signatures.
+
+            </div>
+
+            <!-- ESIGN BUTTON -->
+            <div ng-show="!master.approvalDoc && master.participant.agreeToEsign" class="col-xs-12" style="text-align:center;">
+              <input class="btn rk-esign-btn" type="submit" ng-click="(rkState.formComplete = true) && (updateDocumentData())" value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+            </div>
+
+            <!-- APPROVAL BUTTON -->
+            <div ng-show="master.approvalDoc && master.participant.agreeToEsign" class="col-xs-12" style="text-align:center;">
+              <input class="btn rk-esign-btn" type="submit" ng-click="(rkState.formComplete = true) && (updateDocumentData())" value="APPROVE" style="margin-top: 15px; margin-bottom: 15px;" />
+            </div>
+
+          </div>
+          <div class="col-xs-12" style="text-align:center;">
+            <button class="btn" style="background-color:white;margin-top:40px;" ng-click="rkState.reminderModalOpen = false">Back to Document...</button>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,36 @@
+<!-- If rkState.loadingModalOpen == true, this view will be shown.  When rkDocumentLoaded becomes true, the user will be allowed to see the signing page, which will be sitting behind this modal. At any time the user can close this modal. -->
+
+
+
+
+
+<div ng-controller="SigningPageCtrl">
+
+
+  <script>console.log("hello from the loading-view.html")</script>
+
+
+<!-- Angular does a GET request to Node to retreive document data -->
+    <!-- <span ng-init="getDocumentData()"></span> -->
+    <!-- <span ng-init="getMockDocumentData()"></span> -->
+
+
+
+    <div ng-show="rkState.loadingModalOpen">  
+      <div class="rk-basic-modal-0">
+        <div class="rk-basic-modal-2 rk-loading-modal z-depth-2">
+          <div class="row">
+            <div class="col-xs-12 pull-right">
+              <a ng-click="rkState.loadingModalOpen = false" class="pull-right"><span class="glyphicon glyphicon-remove rk-black-x pull-right"></span></a>
+            </div>
+
+            <div class="col-xs-12 rk-loading">
+              ....loading
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

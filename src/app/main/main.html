@@ -1,0 +1,423 @@
+
+<!-- <div id="signing-page" ng-include="'../app/components/signing-page/signing-page.html'"></div> -->
+
+
+<div ng-controller="SigningPageCtrl">
+
+  <!-- document GET request -->
+  <span ng-init="getDocumentData()"></span>
+  <span ng-init="master.typedInitials = ''"></span>
+  <span ng-init="master.participant.name = ''"></span>
+  <span ng-init="getZoomFactor()"></span>
+  <span ng-init="getContinuousFieldStatus"></span>
+
+  <!-- modals -->
+  <div id="reminder-modal" ng-include="'app/components/signing-page/_reminder-modal.html'"></div>
+  <div id="terms-of-use-modal" ng-include="'app/components/signing-page/_terms-of-use-modal.html'"></div>
+  <div id="completed" ng-include="'app/components/signing-page/_completed-modal.html'"></div>
+  <div id="document-declined" ng-include="'app/components/signing-page/_document-declined.html'"></div>
+
+  <div class="rk-page-buffer"></div>
+
+  <div id="desktop-header" ng-include="'app/components/signing-page/_desktop-header.html'"></div>
+
+  <!-- BEGIN FORM -->
+  <form novalidate>
+    <div id="signature-modal" ng-include="'app/components/signing-page/_signature-modal.html'"></div>
+    <div id="initials-modal" ng-include="'app/components/signing-page/_initials-modal.html'"></div>
+    <div id="decline-modal" ng-include="'app/components/signing-page/_decline-modal.html'"></div>
+    <div id="alert-messages" ng-include="'app/components/signing-page/_alert-messages.html'"></div>
+    <!-- <div id="loading-modal" ng-include="'components/signing-page/_password-modal.html'"></div> -->
+
+
+    <!-- SIGNING PAGE CONTAINER -->
+    <div id="rk-box-0" onresize="getZoomFactor();">
+
+      <div id="dev" ng-show="rkState.showDev" ng-include="'app/components/signing-page/_dev.html'"></div>
+      <div id="mobile-header" ng-include="'app/components/signing-page/_mobile-nav-bar.html'"></div>
+
+
+
+
+      <!-- MAIN DOCUMENT VIEW -->
+      <div class="rk-box-2">
+        
+      <!-- <a href="" scroll-to="#field5" offset="400" container="html, body">Go to element</a> -->
+
+
+      <div id="thumbnails-tray" ng-include="'app/components/signing-page/_thumbnails-tray.html'"></div>
+
+      <div class="row">
+        <button ng-click="rkState.showDev = true" class="btn rk-dev-btn" >show dev</button>
+        <button ng-click="rkState.showDev = false" class="btn rk-dev-btn">hide dev</button>
+      </div>
+
+      <!-- PNGs and FIELDS setup -->
+      <div ng-repeat="item in master.pages">
+
+<!-- TO DO inline style fix -->
+        <div id="pageContainer{{ item.number }}" class="rk-page-parent" style="border: 1px solid #ddd; margin-top: 15px;" ng-style="{ 'width' : '{{ item.width }}px', 'height' : '{{ item.height }}px', 'background-image' : 'url(' + item.url + ')', 'zoom' : '{{ zoomFactor }}%' }">
+
+
+          <div ng-repeat="item2 in master.participantFields">
+            <div ng-if=" item.number == item2.pageNumber ">
+
+
+              <div class="rk-page-child" ng-style="{ 'margin-left' : '{{ item2.x }}%', 'margin-top' : '{{ item.height * item2.y / 100 }}px' }">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- SIGNATURE FIELDS ////////////////////////////////////////////////////////////////////////////////////// -->
+
+                <div ng-if=" item2.type == 'SIGNATURE' ">
+
+                  <!-- not empty drawn -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.canvasData != '') && (rkState.signaturePreference === 'draw')">
+                    <span id="field5" class="rk-signature-display">
+                      <img src="{{ item2.canvasData }}" height="30px" width="100px" />
+                    </span>
+                    <span>
+                      <button class="glyphicon glyphicon-remove rk-red-x-button" ng-click=" unapply(item2.id - 1) "></button>
+                    </span>
+                  </div>
+
+                  <!-- not empty typed -->
+
+<!-- TO DO inline style fix -->
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.data != '') && (rkState.signaturePreference === 'type')">
+                    <span id="field{{ item2.id }}" class="rk-signature-display" ng-style="{ 'width' : '{{ item2.width }}px' , 'height' : '{{ item2.height }}px' , 'font-family' : '{{ rkState.assignedFont }}' }" style="font-size:18px;">
+                      <div class="rk-page-buffer"></div>
+                      {{ item2.data }}
+                    </span>
+                    <span>
+                      <button class="glyphicon glyphicon-remove rk-red-x-button" ng-click=" unapply(item2.id - 1) "></button>
+                    </span>
+                  </div>
+
+                  <!-- empty without bypass -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.data == '') && (!rkState.bypassSignatureModal)">
+                    <span ng-init="item2.complete = false"></span>
+
+                    <button id="field{{ item2.id }}"
+                      class="rk-sig-btn"
+                      ng-style="{
+                        'height' : '{{ item2.height }}px',
+                        'width' : '{{item2.width }}px'
+                      }"
+                      id="field{{ item2.id }}"
+                      ng-click="(rkState.signatureModalOpen = true) && (rkState.chosenField = item2.id) && (rkState.signaturePreference = 'type') && (alertFocus())"
+                      style="border-color: {{ item2.borderColor }};"
+                    >
+                      <span
+                        class="glyphicon glyphicon-pencil desktop-only"
+                      >
+                      </span>
+                      Click to Sign
+                    </button>
+                  </div>
+
+                  <!-- empty with bypass and preference of draw -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.canvasData == '') && (rkState.bypassSignatureModal) && (rkState.signaturePreference == 'draw') ">
+                    <span ng-init="item2.complete = false"></span>
+
+                    <button id="field{{ item2.id }}"
+                      class="rk-sig-btn"
+                      ng-style="{
+                        'height' : '{{ item2.height }}px',
+                        'width' : '{{item2.width }}px'
+                      }"
+                      id="field{{ item2.id }}"
+                      ng-click="(updateChosenDrawnSignature(item2.id))"
+                      style="border-color: {{ item2.borderColor }};"
+                    >
+                      <span
+                        class="glyphicon glyphicon-pencil desktop-only"
+                      >
+                      </span>
+                      Click to Sign
+                    </button>
+                  </div>
+
+                  <!-- empty with bypass and preference of type -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.data == '') && (rkState.bypassSignatureModal) && (rkState.signaturePreference == 'type')">
+                    <span ng-init="item2.complete = false"></span>
+
+                    <button id="field{{ item2.id }}"
+                      class="rk-sig-btn"
+                      ng-style="{
+                        'height' : '{{ item2.height }}px',
+                        'width' : '{{item2.width }}px'
+                      }"
+                      id="field{{ item2.id }}"
+                      ng-click="(updateChosenTypedSignature(item2.id))"
+                      style="border-color: {{ item2.borderColor }};"
+                    >
+                      <span
+                        class="glyphicon glyphicon-pencil desktop-only"
+                      >
+                      </span>
+                      Click to Sign
+                    </button>
+                  </div>
+
+                </div>
+
+
+<!-- TEXT FIELDS ////////////////////////////////////////////////////////////////////////////////////////// -->
+
+ <!-- TO DO inline style fix -->
+              <!-- wider than 700px -->
+
+                <div ng-if=" item2.type == 'TEXT' ">
+                  <div ng-if=" (item.number == item2.pageNumber) " class="rk-large-general-field">
+
+                    <!-- inline styling used here due to mobile not picking up zoom for text size as well as rk-general-field not being picked up in general in prod. Need to add if not-mobile then font-size:14px. -->
+
+                    <input id="field{{ item2.id }}"
+                      placeholder=" Fill in Text Here ..."
+                      type="text"
+                      ng-style="{ 'width' : '{{ item2.width }}px', 'height' : '{{ item2.height }}px' }"
+                      style="
+                        border-color: {{ item2.borderColor }};
+                        border-width:1px;
+                        font-size:14px;
+                        height:30px;
+                        padding:0;"
+                      ng-model="item2.data"
+                    />
+
+                    <span ng-if="item2.data != '' ">
+                      <span ng-init="item2.complete = true"></span>
+                      <span ng-init="getFieldStatusLite()"></span>
+                    </span>
+                    <span ng-if="item2.data == '' ">
+                      <span ng-init="item2.complete = false"></span>
+                      <span ng-init="getFieldStatusLite()"></span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- narrower than 700px -->
+
+                <div ng-if=" item2.type == 'TEXT' ">
+                  <div ng-if=" (item.number == item2.pageNumber) " class="rk-small-general-field">
+
+                    <!-- inline styling used here due to mobile not picking up zoom for text size as well as rk-general-field not being picked up in general in prod. Need to add if not-mobile then font-size:14px. -->
+
+                    <input id="field{{ item2.id }}"
+                      type="text"
+                      ng-style="{ 'width' : '{{ item2.width }}px', 'height' : '{{ item2.height }}px' }"
+                      style="
+                        border-color: {{ item2.borderColor }};
+                        border-width:1px;
+                        font-size:8px;
+                        height:30px;
+                        padding:0;"
+                      ng-model="item2.data"
+                    />
+
+                    <span ng-if="item2.data != '' ">
+                      <span ng-init="item2.complete = true"></span>
+                      <span ng-init="getFieldStatusLite()"></span>
+                    </span>
+                    <span ng-if="item2.data == '' ">
+                      <span ng-init="item2.complete = false"></span>
+                      <span ng-init="getFieldStatusLite()"></span>
+                    </span>
+                  </div>
+                </div>
+
+<!-- CHECKBOX FIELDS //////////////////////////////////////////////////////////////////////////////////////// -->
+
+                <div ng-if=" (item2.type == 'CHECKBOX') ">
+
+                  <div class="rk-checkbox-parent" style="border-color:{{ item2.borderColor }};">
+                    <input id="field{{ item2.id }}" type="checkbox" class="rk-checkbox" ng-model="item2.data" value="Checked" />
+                    <span ng-if="item2.data == true ">
+                      <span ng-init="item2.complete = true"></span>
+                      <span ng-init="getFieldStatusLite()"></span>
+                    </span>
+                    <span ng-if="item2.data != true ">
+                      <span ng-init="item2.complete = false"></span>
+                      <span ng-init="getFieldStatusLite()"></span>
+                    </span>
+                  </div>
+
+                </div>
+
+<!-- FULLNAME FIELDS ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+                <div ng-if=" item2.type == 'FULLNAME' ">
+                  <div ng-if=" (item.number == item2.pageNumber) " class="">
+                    {{ master.participant.name }}
+                    <span ng-init="item2.complete = true"></span>
+                  </div>
+                </div>
+
+<!-- DATE FIELDS ////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+                <div ng-if=" item2.type == 'DATE' ">
+                  <div ng-if=" (item.number == item2.pageNumber) ">
+                    <!-- TO DO inline style fix: font size in mobile needed a little help here as well. need to reset desktop to 14px. -->
+                    <span ng-init="item2.data = date"  style="font-size: 10px;" ng-style="{ 'zoom' : '100%' }">
+                    {{ item2.data | date : 'MM/dd/yyyy'}}
+                  </div>
+                  <span ng-if="item2.data != '' ">
+                    <span ng-init="item2.complete = true"></span>
+                  </span>
+                  <span ng-if="item2.data == '' ">
+                    <span ng-init="item2.complete = false"></span>
+                  </span>
+                </div>
+
+<!-- INITIALS FIELDS ////////////////////////////////////////////////////////////////////////////////////////// -->
+
+                <div ng-if=" item2.type == 'INITIALS' ">
+
+                  <!-- not empty drawn -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.canvasData != '') && (rkState.initialsPreference === 'draw') ">
+                    <span class="rk-signature-display">
+                      <img src="{{ item2.canvasData }}" height="30px" width="100px" />
+                    </span>
+                    <span>
+                      <button class="glyphicon glyphicon-remove rk-red-x-button" ng-click=" unapply(item2.id - 1) "></button>
+                    </span>
+
+                  </div>
+
+                  <!-- not empty typed -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.data != '') && (rkState.initialsPreference === 'type')">
+                    <!-- TO DO inline style fix -->
+                    <span class="rk-signature-display" ng-style="{ 'width' : '{{ item2.width }}px' , 'height' : '{{ item2.height }}px' , 'font-family' : '{{ rkState.assignedFont }}' }" style="font-size:18px;">
+                      <div class="rk-page-buffer"></div>
+                      {{ item2.data }}
+                    </span>
+                    <span>
+                      <button class="glyphicon glyphicon-remove rk-red-x-button" ng-click=" unapply(item2.id - 1) "></button>
+                    </span>
+                  </div>
+
+                  <!-- empty without bypass -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.data == '') && (!rkState.bypassInitialsModal)">
+
+                    <button
+                      class="rk-sig-btn"
+                      ng-style="{
+                        'height' : '{{ item2.height }}px',
+                        'width' : '{{item2.width }}px'
+                      }"
+                      id="field{{ item2.id }}"
+                      ng-click="(rkState.initialsModalOpen = true) && (rkState.chosenField = item2.id) && (rkState.initialsPreference = 'type')"
+                      style="
+                        border-color:{{ item2.borderColor }};
+                      "
+                    >
+                      <span
+                        class="glyphicon glyphicon-pencil desktop-only"
+                      >
+                      </span>
+                      Initials
+                    </button>
+
+                  </div>
+
+                  <!-- empty with bypass and preference of draw -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.canvasData == '') && (rkState.bypassInitialsModal) && (rkState.initialsPreference == 'draw') ">
+                    <span ng-init="item2.complete = false"></span>
+
+                    <button
+                      class="rk-sig-btn"
+                      ng-style="{
+                        'height' : '{{ item2.height }}px',
+                        'width' : '{{item2.width }}px'
+                      }"
+                      id="field{{ item2.id }}"
+                      ng-click="(updateChosenDrawnInitials(item2.id))"
+                      style="
+                        border-color:{{ item2.borderColor }};
+                      "
+                    >
+                      <span
+                        class="glyphicon glyphicon-pencil desktop-only"
+                      >
+                      </span>
+                      Initials
+                    </button>
+                  </div>
+
+                  <!-- empty with bypass and preference of type -->
+
+                  <div ng-if=" (item.number == item2.pageNumber) && (item2.data == '') && (rkState.bypassInitialsModal) && (rkState.initialsPreference == 'type') ">
+                    <span ng-init="item2.complete = false"></span>
+
+                    <button
+                      class="rk-sig-btn"
+                      ng-style="{
+                        'height' : '{{ item2.height }}px',
+                        'width' : '{{item2.width }}px'
+                      }"
+                      id="field{{ item2.id }}"
+                      ng-click="(updateChosenTypedInitials(item2.id))"
+                      style="
+                        border-color:{{ item2.borderColor }};
+                      "
+                    >
+                      <span
+                        class="glyphicon glyphicon-pencil desktop-only"
+                      >
+                      </span>
+                      Initials
+                    </button>
+                  </div>
+
+                </div>
+
+<!-- END FIELDS /////////////////////////////////////////////////////////////////////////////////////// -->
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="rk-page-buffer"></div>
+      <div class="rk-page-buffer"></div>
+
+      </div>
+
+    </div>
+
+<!--      <div class="col-xs-4">
+      <div class="rk-decline" style="margin-top: 8px;">
+        <button class="btn btn-xs pull-right" style="color:grey;background-color:white; padding-top:0; padding-bottom:0;" ng-click="rkState.declineModalOpen = true"><span class="glyphicon glyphicon-minus-sign rk-red-x"></span><span style="border-radius:0;font-size:12px;padding-left:3px;">DECLINE</span></button>
+      </div>
+      <div class="rk-page-buffer"></div>
+    </div> -->
+
+  </form>
+
+</div>
+
+

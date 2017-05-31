@@ -1,0 +1,57 @@
+      <!-- DESKTOP HEADER -->
+      <!-- TO DO inline style fix height now showing up unless inline -->
+      <div class="rk-box-1 rk-desktop-only" style="height: 62px">
+        <div class="row">
+          <div class="col-xs-5" style="float: left;">
+          </div>
+          <div class="col-xs-7">
+            <div class="row" style="margin-right:5px;">
+              <span ng-if="(reqRem.length == 0)">
+                <!-- ESIGN BUTTONS -->
+                <span ng-show="!master.participant.agreeToEsign && !master.approvalDoc">
+                  <input class="btn btn-xl rk-esign-btn" style="margin-bottom:0;margin-top:5px;" type="submit" ng-click="rkState.termsOfUseModalOpen = true" value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+                </span>
+                <span ng-show="master.participant.agreeToEsign && master.participant.name && !master.approvalDoc">
+                  <input class="btn btn-xl rk-esign-btn" style="margin-bottom:0;margin-top:5px;" type="submit" ng-click="rkState.formComplete = true && (updateDocumentData())" value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+                </span>
+                <span ng-show="master.participant.agreeToEsign && !master.participant.name && !master.approvalDoc">
+                  <input class="btn btn-xl rk-esign-btn" style="margin-bottom:0;margin-top:5px;" type="submit" ng-click="rkState.termsOfUseModalOpen = true " value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+                </span>
+                <!-- APPROVAL BUTTONS -->
+                <span ng-show="!master.participant.agreeToEsign && master.approvalDoc">
+                  <input class="btn btn-xl rk-esign-btn" style="margin-bottom:0;margin-top:5px;" type="submit" ng-click="rkState.termsOfUseModalOpen = true" value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+                </span>
+                <span ng-show="master.participant.agreeToEsign && master.participant.name && master.approvalDoc">
+                  <input class="btn btn-xl rk-esign-btn" style="margin-bottom:0;margin-top:5px;" type="submit" ng-click="rkState.formComplete = true  && (updateDocumentData())" value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+                </span>
+                <span ng-show="master.participant.agreeToEsign && !master.participant.name && master.approvalDoc">
+                  <input class="btn btn-xl rk-esign-btn" style="margin-bottom:0;margin-top:5px;" type="submit" ng-click="rkState.termsOfUseModalOpen = true " value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+                </span>
+              </span>
+
+              <!-- normal signature UX -->
+              <span ng-if="(master.participant.name == '') && !(master.approvalDoc)" style="float:right;color:black;">
+              You are signing <strong>{{ master.name }}</strong> as <strong style="font-family:'Playfair Display';">{{ master.participant.email }}</strong>.
+              </span>
+              <span ng-if="!(master.participant.name == '') && !(master.approvalDoc)" style="float:right;color:black;">
+                You are signing <strong>{{ master.name }}</strong> as <strong style="font-family:'Playfair Display';">{{ master.participant.name }}</strong>.
+              </span>
+
+              <!-- approval UX -->
+              <span ng-if="(master.participant.name == '') && (master.approvalDoc)" style="float:right;color:black;">
+              You are signing <strong style="color:red;">{{ master.name }}</strong> as <strong style="font-family:'Playfair Display';">{{ master.participant.email }}</strong>.
+              </span>
+              <span ng-if="!(master.participant.name == '') && (master.approvalDoc)" style="float:right;color:black;">
+                You are signing <strong style="color:red;">{{ master.name }}</strong> as <strong style="font-family:'Playfair Display';">{{ master.participant.name }}</strong>.
+              </span>
+
+
+            </div>
+            <div ng-if="(reqRem.length != 0)" class="row" style="margin-right:5px;">
+              <div style="float:right;color:black;">
+                You have <a href="#/signing/{{ partHash }}#field{{ reqRem[0].id }}"><strong style="font-family:'Playfair Display';color:red;">{{ reqRem.length }}</strong></a> remaining required field(s).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

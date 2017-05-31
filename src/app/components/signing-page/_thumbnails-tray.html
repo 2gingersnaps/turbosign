@@ -1,0 +1,47 @@
+    <!-- THUMBNAILS TRAY -->
+        <div ng-if="(rkState.trayOpen) && (!rkState.formComplete) && (!rkState.documentDeclined)">
+          <div class="rk-tray">
+            <div ng-repeat="item in master.pages">
+
+              <div class="rk-page-buffer"></div>
+
+              <div class="rk-thumbnail-box">
+
+                <a href="#/signing/{{ partHash }}#pageContainer{{ item.number }}">
+
+                  <div class="rk-page-buffer"></div>
+                  <div class="rk-page-buffer"></div>
+
+                  <div class="rk-page-parent" style="border:.5px solid #F6C56B;" ng-style="{ 'width' : '{{ item.width }}px', 'height' : '{{ item.height }}px', 'background-image' : 'url(' + item.url + ')', 'zoom' : '8%' }">
+
+                  </div>
+
+                  <div class="rk-page-buffer"></div>
+                  <div class="rk-page-buffer"></div>
+
+                  <div class="rk-thumbnail-action">
+                    {{ item.number }}
+                  </div>
+
+                  <div class="rk-page-buffer"></div>
+                  <div class="rk-page-buffer"></div>
+
+                </a>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="(!rkState.trayOpen) && (!rkState.formComplete) && (!rkState.documentDeclined)">
+          <div class="rk-open-action">
+            <a ng-click="rkState.trayOpen = !rkState.trayOpen" style="font-size:30px;" class="glyphicon glyphicon-chevron-right"></a>
+          </div>
+        </div>
+
+        <div ng-if="rkState.trayOpen">
+          <div class="rk-close-action">
+            <a ng-click="rkState.trayOpen = !rkState.trayOpen" style="font-size:30px;" class="glyphicon glyphicon-chevron-left"></a>
+          </div>
+        </div>

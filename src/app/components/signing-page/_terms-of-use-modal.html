@@ -1,0 +1,41 @@
+    <div ng-show="rkState.termsOfUseModalOpen">
+      <div class="rk-basic-modal-0">
+        <div class="rk-basic-modal-2" style="width: 375px;height:300px;background-color:#F6A230">
+          <div ng-show="(!master.participant.name)">
+            <div class="col-xs-12" style="text-align:center;">
+              <h3>You are almost done!</h3>
+              <h3>Please type your full name.</h3>
+              <input size="35" type="text" ng-model="rkState.currentSignerName" placeholder="Please type your full name." style="margin-top:30px;">
+            </div>
+            <div style="text-align:center;">
+              <button class="btn btn-xs" style="background-color:white;margin-top:10px;margin-bottom:30px;" ng-click="master.participant.name = rkState.currentSignerName">Apply</button>
+              <button class="btn btn-xs" style="background-color:white;margin-left:10px;margin-top:10px;margin-bottom:30px;" ng-click="rkState.termsOfUseModalOpen = false">Cancel</button>
+            </div>
+          </div>
+          <h3 ng-show="(master.participant.name) && (!master.participant.agreeToEsign)" style="text-align:center;word-wrap: break-word;padding-top:10px;">Congrats {{ master.participant.name }}!</h3>
+          <div ng-show="(master.participant.name)" class="col-xs-12" style="margin-left:-5px;">
+            <strong ng-show="!master.participant.agreeToEsign" class="col-xs-12">You have filled in all required fields. Please agree to the following terms of use.</strong>
+            <div class="col-xs-12" style="margin-top:20px;">
+              <input type="checkbox" ng-model="master.participant.agreeToEsign" required="" name="masterAgree"/>
+
+              I agree to do business electronically with all parties to this document and agree that I have reviewed the <a style="color:#800000; font-weight:bold" href="#/disclosures" target=_blank>consumer disclosures</a> related to electronic signatures.
+
+            </div>
+          </div>
+
+          <!-- ESIGN BUTTON -->
+          <div ng-show="master.participant.agreeToEsign && !master.approvalDoc" class="col-xs-12" style="text-align:center;">
+            <input class="btn rk-esign-btn" type="submit" ng-click="(rkState.formComplete = true) && (updateDocumentData())" value="Click to ESign" style="margin-top: 15px; margin-bottom: 15px;" />
+          </div>
+
+          <!-- APPROVE BUTTON -->
+          <div ng-show="master.participant.agreeToEsign && master.approvalDoc" class="col-xs-12" style="text-align:center;">
+            <input class="btn rk-esign-btn" type="submit" ng-click="(rkState.formComplete = true) && (updateDocumentData())" value="APPROVE" style="margin-top: 15px; margin-bottom: 15px;" />
+          </div>
+
+          <div class="col-xs-12" style="text-align:center;">
+            <button class="btn btn-xs" style="background-color:white; color:black;margin-top:15px;" ng-click="rkState.termsOfUseModalOpen = false">Back to Document...</button>
+          </div>
+        </div>
+      </div>
+    </div>
