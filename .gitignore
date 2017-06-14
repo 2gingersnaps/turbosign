@@ -7,3 +7,4 @@ coverage/
 dist/
 aws-credentials.json
 .awspublish-turbosign
+extra.js
